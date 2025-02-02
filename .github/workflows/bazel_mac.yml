@@ -16,6 +16,7 @@ jobs:
           submodules: recursive
           update: true
           install: brew update && brew bundle --file=contrib/brew/Brewfile && pip3 install PyQt5
+      - run: bazelisk run :configure
       - run: bazelisk build src:all --@boost.asio//:ssl=openssl
       - run: bazelisk build utils/gui
       - run: bazelisk run tests:run_monero_tests  --@boost.asio//:ssl=openssl
